@@ -413,5 +413,384 @@ def squared(str,n):
 if __name__=="__main__":
     squared("ab",3)
 # PART  3  OVER
+#line
+def line(n,char):
+    if char=="":
+        print("*"*n)
+    else:
+        print(char[0]*n)
+if __name__ == "__main__":
+    line(5, "x")
+#box_of_hashes
+def line(b,a):
+    print(a*b)
+def box_of_hashes(n):  # You should call function line here with proper parameters
+    while n>0:
+        line(10, "#")
+        n-=1
+if __name__ == "__main__":
+    box_of_hashes(5)
+#square_of_hashes
+def line(b,a):
+    print(a*b)
+def square_of_hashes(n):
+    k=n
+    while n>0:
+        line(k, "#")
+        n-=1
+if __name__ == "__main__":
+    square_of_hashes(5)
+#square
+def line(b,a):
+    print(a*b)
+def square(n, m):
+    k=n
+    while n>0:
+        line(k, m)
+        n-=1
+if __name__ == "__main__":
+    square(5, "x")
+#triangle
+def line(a,b):
+    print(b*a)
+def triangle(n):
+    i=1
+    while i<=n:
+        line(i, "#")
+        i+=1
+if __name__ == "__main__":
+    triangle(5)
+#shape
+def line(a,b):
+    print(b*a)
+def shape(k,x,l,y):
+    i=1
+    while i<=k:
+        line(i,x)
+        i+=1
+    while l>0:
+        line(k,y)
+        l-=1
+if __name__ == "__main__":
+    shape(5, "x", 2, "o")
+#spruce
+def spruce(n):
+    print("a spruce!")
+    s="*"
+    i=1
+    while i<=n:
+        print(" "*(n-i)+s*(2*i-1))
+        i+=1
+    print(" "*(n-1)+s)
+if __name__ == "__main__":
+    spruce(5)
+#greatest_number
+def greatest_number(a,b,c):
+    if a>=b:
+        if a>=c:
+            return a
+        else:
+            return c
+    elif c>=a:
+        if c>=b:
+            return c
+        else:
+            return b
+    elif b>=c:
+        if b>=a:
+            return b
+        else:
+            return a
+if __name__ == "__main__":
+    greatest = greatest_number(5, 4, 8)
+    print(greatest)
+#same_char
+def same_chars(ar, i, j):
+    if i>=len(ar) or j>=len(ar):
+        return False
+    if ar[i]==ar[j]:
+        return True
+    else:
+        return False
+if __name__ == "__main__":
+    print(same_chars("coder", 1, 2))
+#1st2ndlast
+def first_word(s):
+    return s.split()[0]
+def second_word(s):
+    return s.split()[1]
+def last_word(s):
+    return s.split()[-1]
+if __name__ == "__main__":
+    sentence = "once upon a time there was a programmer"
+    print(first_word(sentence))
+    print(second_word(sentence))
+    print(last_word(sentence))
+#change_value
+a=[1,2,3,4,5]
+while True:
+    i=int(input("Index: "))
+    if i == -1:
+        break
+    x=int(input("New value: "))
+    a[i]=x
+    print(a)
+#add_items
+n=int(input("How many items: "))
+a=[]
+for i in range(n):
+    x=int(input(f"Item {i+1}: "))
+    a.append(x)
+print(a)
+#addition_removal
+list=[]
+print(f"The list is now {list}")
+while True:
+    operation=input("a(d)d, (r)emove or e(x)it: ")
+    if operation=="x":
+        break
+    if len(list)==0:
+        if operation=="d":
+            list.append(1)
+            print(f"The list is now {list}")
+    else:
+        if operation=="d":
+             list.append(list[-1]+1)
+        elif operation=="r":
+             list.pop(-1)
+        print(f"The list is now {list}")
+print("Bye!")
+#same_word_twice
+list=[]
+while True:
+    x=input("Word: ")
+    if x in list:
+        break
+    list.append(x)
+print(f"You typed in {len(list)} different words")
+#list_twice
+list=[]
+while True:
+    x=int(input("New item: "))
+    if x==0:
+        break
+    list.append(x)
+    print("The list now:", list)
+    print("The list in order:", sorted(list))
+print("Bye!")
+#lenoflist
+def length(a):
+    x=len(a)
+    return x
+if __name__ == "__main__":
+    my_list = [3, 6, -4]
+    result = length(my_list)
+    print(result)
+#mean
+def mean(a):
+    m=(sum(a))/len(a)
+    return m
+if __name__ == "__main__":
+    my_list = [3, 6, -4]
+    result = mean(my_list)
+    print(result)
+#rangeoflist
+def range_of_list(a):
+    mx=max(a)
+    mn=min(a)
+    return mx-mn
+if __name__ == "__main__":
+    my_list = [3, 6, -4]
+    result = range_of_list(my_list)
+    print(result)
+#star_studded
+str=input("Please type in a string: ")
+for char in str:
+    print(char)
+    print("*")
+#negative to positive
+n=int(input("Please type in a positive integer: "))
+for i in range(-n,n+1):
+    if i==0:
+        continue
+    else:
+        print(i)
+#list_of stars
+def list_of_stars(list):
+    for i in list:
+        print("*"*i)
+if __name__=="__main__":
+    list=list(input())
+#anagrams
+def anagrams(s1,s2):
+    s1=sorted(s1)
+    s2=sorted(s2)
+    if s1==s2:
+        return True
+    else:
+        return False
+if __name__=="__main__":
+    # s1=input()
+    # s2=input()
+    print(anagrams(s1,s2))
+#palindromes
+def palindromes(a):
+    b=''.join(reversed(a))
+    if b==a:
+        return True
+    else:
+        return False
+    return x
+while True:
+    a=input("Please type in a palindrome: ")
+    if palindromes(a)==True:
+        print(f"{a} is a palindrome!")
+        break
+    else:
+        print("that wasn't a palindrome")
+#sum_of_positives
+def sum_of_positives(list):
+    sum=0
+    for i in list:
+        if i>0:
+            sum+=i
+    return sum
+if __name__=="__main__":
+    print("The result is", sum_of_positives(list))
+#even_numbers
+def even_numbers(a):
+    even=[]
+    for i in a:
+        if i%2==0:
+            even.append(i)
+    return even
+if __name__=="__main__":
+    even_numbers(list)
+#sum_of_lists
+def list_sum(l1,l2):
+    sum=[]
+    for i in range(len(l1)):
+        sum.append(l1[i]+l2[i])
+    return sum
+if __name__=="__main__":
+    list_sum(list1,list2)
+#distinct_numbers
+def distinct_numbers(a):
+    b=set(a)
+    b=list(b)
+    return sorted(b)
+if __name__=="__main__":
+    distinct_numbers(list)
+#length of longest
+def length_of_longest(a):
+    l=0
+    for i in a:
+        if len(i)>l:
+            l=len(i)
+    return l
+if __name__=="__main__":
+    length_of_longest(list)
+#shortest in list
+def shortest(a):
+    l=100
+    for i in a:
+        if len(i)<l:
+            l=len(i)
+            x=i
+    return x
+if __name__=="__main__":
+    shortest(list)
+#all_longest in list
+def all_the_longest(a):
+    list=[]
+    l=0
+    for i in a:
+        if len(i)>l:
+            l=len(i)
+    for i in a:
+        if len(i)==l:
+            list.append(i)
+    return list
+if __name__=="__main__":
+    all_the_longest(list)
+#everything reversed
+def everything_reversed(a):
+    l1=[]
+    i=len(a)-1
+    while i>=0:
+        l1.append(''.join(reversed(a[i])))
+        i-=1
+    return l1
+if __name__=="__main__":
+    everything_reversed(list)
+#most common character
+def most_common_character(a):
+    n=0
+    for i in range(len(a)):
+        if a.count(a[i])>n:
+            n=a.count(a[i])
+            x=a[i]
+    return x
+if __name__=="__main__":
+    most_common_character(str)
+#no vowels allowed
+def no_vowels(str):
+    str=str.replace("a","")
+    str=str.replace("e","")
+    str=str.replace("i","")
+    str=str.replace("o","")
+    str=str.replace("u","")
+    return str
+if __name__=="__main__":
+    a=input()
+    no_vowels(a)
+#no shouting allowed
+def no_shouting(a):
+    l1=[]
+    for i in range(len(a)):
+        if a[i].isupper()==False:
+            l1.append(a[i])
+    return l1
+if __name__=="__main__":
+    no_shouting(list)
+#neighbours in list
+def longest_series_of_neighbours(a):
+    b=1
+    result=1
+    for i in range(1,len(a)):
+            if abs(a[i]-a[i-1])==1:
+                b+=1
+            else:
+                if b>result:
+                    result=b
+                b=1
+    if b>result:
+         result=b
+    return result
+if __name__=="__main__":
+    print(longest_series_of_neighbours(list))
+#PART_4_ADDED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
