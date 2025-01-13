@@ -770,27 +770,3 @@ def longest_series_of_neighbours(a):
 if __name__=="__main__":
     print(longest_series_of_neighbours(list))
 #PART_4_ADDED
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
