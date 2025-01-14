@@ -770,3 +770,220 @@ def longest_series_of_neighbours(a):
 if __name__=="__main__":
     print(longest_series_of_neighbours(list))
 #PART_4_ADDED
+#longest_string
+def longest(list):
+    max=0
+    for a in list:
+        if len(a)>max:
+            max=len(a)
+            A=a
+    return A
+if __name__=="__main__":
+    longest(str)
+#number of elements
+def count_matching_elements(a,x):
+    res=0
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            if a[i][j]==x:
+                res+=1
+    return res
+if __name__=="__main__":
+    count_matching_elements(m,x)
+#go
+def who_won(l):
+    c1=0
+    c2=0
+    for row in l:
+        for item in row:
+            if item==1:
+                c1+=1
+            elif item==2:
+                c2+=1
+    if c1>c2:
+        return 1
+    elif c2>c1:
+        return 2
+    else:
+        return 0
+if __name__=="__main__":
+    who_won(list)
+#sudoku row
+def row_correct(l,n):
+    l1=[]
+    for i in l[n]:
+        if i==0:
+            continue
+        elif i in l1:
+            return False
+        elif i<1 or i>9:
+            return False
+        else:
+            l1.append(i)
+    return True
+if __name__=="__main__":
+    row_correct(li,num)
+#sudoku column
+def column_correct(l,c):
+    l1=[]
+    for row in l:
+        if row[c]==0:
+            continue
+        elif row[c] in l1:
+            return False
+        elif row[c]<1 or row[c]>9:
+            return False
+        else:
+            l1.append(row[c])
+    return True
+if __name__=="__main__":
+    column_correct(sudoku,colm)
+#items_multiplied_by_two
+def double_items(l):
+    new_list=[]
+    for i in l:
+        new_list.append(2*i)
+    return new_list
+if __name__=="__main__":
+    double_items(list)
+#remove smallest
+def remove_smallest(l):
+    a=l[0]
+    for b in l:
+        if b<a:
+            a=b
+    l.remove(a)
+    print(l)
+if __name__=="__main__":
+    remove_smallest(li)
+#times ten
+def times_ten(a,b):
+    dicti={}
+    for i in range(a,b+1):
+        dicti[i]=i*10
+    return dicti
+if __name__=="__main__":
+    print(times_ten(x,y))
+#factorials
+def factorial(n):
+    res=1
+    for i in range(1,n+1):
+        res*=i
+    return res
+def factorials(a):
+    dicti={}
+    for i in range(1,a+1):
+        dicti[i]=factorial(i)
+    return dicti
+if __name__=="__main__":
+    print(factorials(x))
+#histogram
+def histogram(str):
+    num={}
+    for a in str:
+        if a in num:
+            num[a]+=1
+        else:
+            num[a]=1
+    for key in num:
+        print(f"{key} {"*"*num[key]}")
+if __name__=="__main__":
+    histogram(x)
+#phonebook 1
+pb={}
+while True:
+    com=int(input("command (1 search, 2 add, 3 quit): "))
+    if com==3:
+        break
+    elif com==2:
+        name=input("name: ")
+        num=input("number: ")
+        pb[name]=num
+        print("ok!")
+    else:
+        name=input("name: ")
+        if name not in pb:
+            print("no number")
+        else:
+            print(pb[name])
+print("quitting...")
+#invert_dictionary
+def invert(d):
+    inverted={}
+    for key in d:
+        inverted[d[key]]=key
+    d.clear()
+    d.update(inverted)
+if __name__=="__main__":
+    print(invert(dictionary))
+#movie database
+def add_movie(l,n,d,y,t):
+    dic={}
+    dic["name"]=n
+    dic["director"]=d
+    dic["year"]=y
+    dic["runtime"]=t
+    l.append(dic)
+if __name__=="__main__":
+    database = []
+    add_movie(database, "Gone with the Python", "Victor Pything", 2017, 116)
+    add_movie(database, "Pythons on a Plane", "Renny Pytholin", 2001, 94)
+    print(database)
+#find movies
+def find_movies(l,s):
+    res=[]
+    for dic in l:
+        if s.lower() in dic["name"].lower():
+            res.append(dic)
+    return res
+if __name__=="__main__":
+    my_movies = find_movies(database, "python")
+    print(my_movies)
+#create tuple
+def create_tuple(x,y,z):
+    l=[]
+    a=[1,2,3]
+    l.append(x)
+    l.append(y)
+    l.append(z)
+    a[0]=min(l)
+    a[1]=max(l)
+    a[2]=x+y+z
+    t=tuple(a)
+    return t
+if __name__=="__main__":
+    print(create_tuple(a,b,c))
+#oldest person
+def oldest_person(li):
+    l=[]
+    for tup in li:
+        l.append(tup[1])
+    m=min(l)
+    for tup in li:
+        if tup[1]==m:
+            return tup[0]
+if __name__=="__main__":
+    oldest_person(list)
+#older people
+def older_people(li,ye):
+    l1=[]
+    for tup in li:
+        if tup[1]<ye:
+            l1.append(tup[0])
+    return l1
+if __name__=="__main__":
+    older_people(list,year)
+# PART 5 ADDED
+
+
+
+
+
+
+
+
+
+
+
+
+
