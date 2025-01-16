@@ -1658,7 +1658,7 @@ if __name__=="__main__":
     numbers = [1, 1, 2, 1, 3, 3, 4, 5, 5, 5, 6, 5, 5, 5]
     print(ListHelper.greatest_frequency(numbers))
     print(ListHelper.doubles(numbers))
-#Item Suitcase and Cargo HOLD
+#Item Suitcase and Cargo HOLD(LARGE PROJECT)
 class Item:
     def __init__(self,name,weight):
         self.__name=name
@@ -1737,6 +1737,224 @@ if __name__=="__main__":
     print("The suitcases in the cargo hold contain the following items:")
     cargo_hold.print_items()
 #PART 9 ADDED
+#PART 10 STARTS
+#Laptop_Computer
+class Computer:
+    def __init__(self, model: str, speed: int):
+        self.__model = model
+        self.__speed = speed
+
+    @property
+    def model(self):
+        return self.__model
+
+    @property
+    def speed(self):
+        return self.__speed
+class LaptopComputer(Computer):
+    def __init__(self,model,speed,weight):
+        self.__model=model
+        self.__speed=speed
+        self.__weight=weight
+    def __str__(self):
+        return f"{self.__model}, {self.__speed} MHz, {self.__weight} kg"
+#Game_Museum
+class ComputerGame:
+    def __init__(self, name: str, publisher: str, year: int):
+        self.name = name
+        self.publisher = publisher
+        self.year = year
+
+class GameWarehouse:
+    def __init__(self):
+        self.__games = []
+
+    def add_game(self, game: ComputerGame):
+        self.__games.append(game)
+
+    def list_games(self):
+        return self.__games
+    @property
+    def games(self):
+        return self.__games
+class GameMuseum(GameWarehouse):
+    def list_games(self):
+        li=[]
+        for games in self.games:
+            if games.year<1990:
+                li.append(games)
+        return li
+if __name__=="__main__":
+    museum = GameMuseum()
+    museum.add_game(ComputerGame("Pacman", "Namco", 1980))
+    museum.add_game(ComputerGame("GTA 2", "Rockstar", 1999))
+    museum.add_game(ComputerGame("Bubble Bobble", "Taito", 1986))
+    for game in museum.list_games():
+        print(game.name)
+#square and rectangle Area
+class Rectangle:
+    def __init__(self, width: int, height: int):
+        self.width = width
+        self.height = height
+
+    def __str__(self):
+        return f"square {self.width}x{self.height}"
+
+    def area(self):
+        return self.width * self.height
+class Square(Rectangle):
+    def __init__(self,side):
+        self.width=side
+        self.height=side
+if __name__=="__main__":
+    square = Square(4)
+    print(square)
+    print("area:", square.area())
+#Word_Game(LARGE PROJECT)
+import random
+
+class WordGame():
+    def __init__(self, rounds: int):
+        self.wins1 = 0
+        self.wins2 = 0
+        self.rounds = rounds
+
+    def round_winner(self, player1_word: str, player2_word: str):
+        # determine a random winner
+        return random.randint(1, 2)
+
+    def play(self):
+        print("Word game:")
+        for i in range(1, self.rounds+1):
+            print(f"round {i}")
+            answer1 = input("player1: ")
+            answer2 = input("player2: ")
+
+            if self.round_winner(answer1, answer2) == 1:
+                self.wins1 += 1
+                print("player 1 won")
+            elif self.round_winner(answer1, answer2) == 2:
+                self.wins2 += 1
+                print("player 2 won")
+            else:
+                pass # it's a tie
+
+        print("game over, wins:")
+        print(f"player 1: {self.wins1}")
+        print(f"player 2: {self.wins2}")
+class LongestWord(WordGame):
+    def __init__(self, rounds: int):
+        super().__init__(rounds)
+
+    def round_winner(self, player1_word: str, player2_word: str):
+        if len(player1_word)>len(player2_word):
+            return 1
+        elif  len(player1_word)<len(player2_word):
+            return 2
+class MostVowels(WordGame):
+    def __init__(self,rounds):
+        super().__init__(rounds)
+    def round_winner(self,w1,w2):
+        c1=0
+        c2=0
+        for i in w1:
+            if i in "aeiou":
+                c1+=1
+        for j in w2:
+            if j in "aeiou":
+                c2+=1
+        if c1>c2:
+            return 1
+        elif c2>c1:
+            return 2
+class RockPaperScissors(WordGame):
+    def __init__(self, rounds):
+        super().__init__(rounds)
+    def round_winner(self,r1,r2):
+        l=["rock","paper","scissors"]
+        if r1=="rock" and r2=="scissors":
+            return 1
+        elif r1=="scissors" and r2=="rock":
+            return 2
+        elif r1=="paper" and r2=="rock":
+            return 1
+        elif r1=="rock" and r2=="paper":
+            return 2
+        elif r1=="scissors" and r2=="paper":
+            return 1
+        elif r1=="paper" and r2=="scissors":
+            return 2
+        elif r1==r2:
+            return None
+        elif r1 not in l and r2 in l:
+            return 2
+        elif r2 not in l and r1 in l:
+            return 1
+        else:
+            return None
+        
+if __name__=="__main__":
+    p = RockPaperScissors(4)
+    p.play()
+#SuperHero
+class SuperHero:
+    def __init__(self, name: str, superpowers: str):
+        self._name = name
+        self.superpowers = superpowers
+
+    def __str__(self):
+        return f'{self.name}, superpowers: {self.superpowers}'
+class SuperGroup(SuperHero):
+    def __init__(self,name,loc):
+        self._name=name
+        self._location=loc
+        self._members=[]
+    def add_member(self,superhero):
+        self._members.append(superhero)
+    def print_group(self):
+        print(f"{self._name}, {self._location}")
+        print("Members:")
+        for member in self._members:
+            print(f"{member._name}, superpowers: {member.superpowers}")
+    @property
+    def name(self):
+        return self._name
+    @property
+    def location(self):
+        return self._location
+if __name__=="__main__":
+    superperson = SuperHero("SuperPerson", "Superspeed, superstrength")
+    invisible = SuperHero("Invisible Inca", "Invisibility")
+    revengers = SuperGroup("Revengers", "Emerald City")
+
+    revengers.add_member(superperson)
+    revengers.add_member(invisible)
+    revengers.print_group()
+#Money(euros and cents)
+class Money:
+    def __init__(self, euros: int, cents: int):
+        self.__euros = euros
+        self.__cents = cents
+    @property
+    def _money(self):
+        return (self.__euros+(self.__cents/100))
+    def __str__(self):
+        return f"{self.__euros+(self.__cents/100):.2f} eur"
+    def __eq__(self,a):
+        return self._money==a._money
+    def __gt__(self,a):
+        return self._money>a._money
+    def __lt__(self,a):
+        return self._money<a._money
+    def __ne__(self,a):
+        return self._money!=a._money
+    def __add__(self,a):
+        return Money((self.__euros+a.__euros),(self.__cents+a.__cents))
+    def __sub__(self,a):
+        if self._money>=a._money:
+            return Money((self.__euros-a.__euros),(self.__cents-a.__cents))
+        else:
+            raise ValueError(f"a negative result is not allowed")
 
 
 
