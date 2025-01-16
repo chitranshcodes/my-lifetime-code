@@ -1185,9 +1185,227 @@ def remove_special_characters(st):
 if __name__=="__main__":
     print(change_case("Well hello there!"),end=" ")
 #PART 7 ADDED
+#PART 8 STARTS
+#smallest_average
+def smallest_average(a,b,c):
+    a1=0
+    b1=0
+    c1=0
+    for value in a.values():
+        if isinstance(value,int):
+            a1+=int(value)
+    for value in b.values():
+        if isinstance(value,int):
+            b1+=int(value)
+    for value in c.values():
+        if isinstance(value,int):
+            c1+=int(value)
+    if a1<b1 and a1<c1:
+        return a
+    elif b1<a1 and b1<c1:
+        return b
+    else:
+        return c
+if __name__=="__main__":
+    person1 = {"name": "Mary", "result1": 2, "result2": 3, "result3": 3}
+    person2 = {"name": "Gary", "result1": 5, "result2": 1, "result3": 8}
+    person3 = {"name": "Larry", "result1": 3, "result2": 1, "result3": 1}
+    print(smallest_average(person1, person2, person3))
+#row_sums
+def row_sums(m):
+    for row in m:
+        s=0
+        for elements in row:
+            s+=elements
+        row.append(s)
+if __name__=="__main__":
+    row_sums(my_matrix)
+    print(my_matrix)
+#list years
+from datetime import date
+def list_years(l):
+    l1=[]
+    for dates in l:
+        l1.append(dates.year)
+    l1.sort()
+    return l1
+if __name__=="__main__":
+    date1 = date(2019, 2, 3)
+    date2 = date(2006, 10, 10)
+    date3 = date(1993, 5, 9)
 
+    years = list_years([date1, date2, date3])
+    print(years)
+#shopping_list
+class ShoppingList:
+    def __init__(self):
+        self.products = []
 
+    def number_of_items(self):
+        return len(self.products)
 
+    def add(self, product: str, number: int):
+        self.products.append((product, number))
+
+    def item(self, n: int):
+        return self.products[n - 1][0]
+
+    def amount(self, n: int):
+        return self.products[n - 1][1]
+def total_units(l):
+    u=0
+    for i in range(1,(l.number_of_items())+1):
+        u+=l.amount(i)
+    return u
+if __name__ == "__main__":
+    my_list = ShoppingList()
+    my_list.add("bananas", 10)
+    my_list.add("apples", 5)
+    my_list.add("pineapple", 1)
+
+    print(total_units(my_list))
+#book
+class Book():
+    def __init__(self,n,a,g,y):
+        self.name=n
+        self.author=a
+        self.genre=g
+        self.year=y
+if __name__=="__main__":
+    python = Book("Fluent Python", "Luciano Ramalho", "programming", 2015)
+    everest = Book("High Adventure", "Edmund Hillary", "autobiography", 1956)
+    print(f"{python.author}: {python.name} ({python.year})")
+    print(f"The genre of the book {everest.name} is {everest.genre}")
+#three classes
+class Checklist():
+    def __init__(self,header,entries):
+        self.header=header
+        self.entries=entries
+class Customer():
+    def __init__(self,id,balance,discount):
+        self.id=id
+        self.balance=balance
+        self.discount=discount
+class Cable():
+    def __init__(self,model,length,max_speed,bidirectional):
+        self.model=model
+        self.length=length
+        self.max_speed=max_speed
+        self.bidirectional=bidirectional
+#Pet
+class Pet():
+    def __init__(self,name,species,year_of_birth):
+        self.name=name
+        self.species=species
+        self.year_of_birth=year_of_birth
+def new_pet(n,s,y):
+    return Pet(n,s,y)
+if __name__=="__main__":
+    fluffy = new_pet("Fluffy", "dog", 2017)
+    print(fluffy.name)
+    print(fluffy.species)
+    print(fluffy.year_of_birth)
+#older_book
+class Book:
+    def __init__(self, name: str, author: str, genre: str, year: int):
+        self.name = name
+        self.author = author
+        self.genre = genre 
+        self.year = year
+def older_book(a,b):
+    if a.year<b.year:
+        print(f"{a.name} is older, it was published in {a.year}")
+    elif b.year<a.year:
+        print(f"{b.name} is older, it was published in {b.year}")
+    else:
+        print(f"{a.name} and {b.name} were published in {a.year}")
+if __name__=="__main__":
+    python = Book("Fluent Python", "Luciano Ramalho", "programming", 2015)
+    everest = Book("High Adventure", "Edmund Hillary", "autobiography", 1956)
+    norma = Book("Norma", "Sofi Oksanen", "crime", 2015)
+    older_book(python, everest)
+    older_book(python, norma)
+#decreasing_counter
+class DecreasingCounter:
+    def __init__(self, initial_value: int):
+        self.value = initial_value
+        self.original=initial_value
+    def print_value(self):
+        print("value:", self.value)
+    def decrease(self):
+        if self.value==0:
+            pass
+        else:
+            self.value-=1
+    def set_to_zero(self):
+        self.value=0
+    def reset_original_value(self):
+        self.value=self.original
+if __name__=="__main__":
+    counter = DecreasingCounter(55)
+    counter.decrease()
+    counter.decrease()
+    counter.decrease()
+    counter.decrease()
+    counter.print_value()
+    counter.reset_original_value()
+    counter.print_value()
+#first_and_last_name
+class Person():
+    def __init__(self,name):
+        self.name=name
+    def return_first_name(self):
+        tup=self.name.split()
+        return tup[0]
+    def return_last_name(self):
+        tup=self.name.split()
+        return tup[1]
+if __name__=="__main__":
+    peter = Person("Peter Pythons")
+    print(peter.return_first_name())
+    print(peter.return_last_name())
+    paula = Person("Paula Pythonnen")
+    print(paula.return_first_name())
+    print(paula.return_last_name())
+#NumberStats
+class  NumberStats:
+    def __init__(self):
+        self.numbers = 0
+        self.sum=0
+
+    def add_number(self, number:int):
+        self.numbers+=1
+        self.sum+=number
+
+    def count_numbers(self):
+        return self.numbers
+    def get_sum(self):
+        return self.sum
+    def average(self):
+        if self.numbers==0:
+            return 0
+        else:
+            return self.sum/(self.numbers)
+number=NumberStats()
+even=NumberStats()
+odd=NumberStats()
+while True:
+    num=int(input("Please type in integer numbers: "))
+    if num==-1:
+        break
+    else:
+        number.add_number(num)
+    if num%2==0:
+        even.add_number(num)
+    else:
+        odd.add_number(num)
+print(f"Sum of numbers: {number.get_sum()}")
+print(f"Mean of numbers: {number.average()}")
+print(f"Sum of even numbers: {even.get_sum()}")
+print(f"Sum of odd numbers: {odd.get_sum()}")
+#PART 8 ADDED
+
+    
 
 
 
