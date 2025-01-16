@@ -1116,7 +1116,75 @@ def filter_incorrect():
 if __name__ == "__main__":
     filter_incorrect()
 #PART 6 ADDED
-
+#PART 7 STARTS
+#hypotenuse
+from math import *
+def hypotenuse(l1,l2):
+    a=sqrt((l1**2)+(l2**2))
+    return a
+if __name__=="__main__":
+    print(hypotenuse(n,m))
+#special_characters
+import string
+def separate_characters(st):
+    le=""
+    pu=""
+    ot=""
+    for char in st:
+        if char in string.ascii_letters:
+            le+=char
+        elif char in string.punctuation:
+            pu+=char
+        else:
+            ot+=char
+    return le,pu,ot
+if __name__=="__main__":
+    parts=separate_characters(Str)
+    print(parts[0])
+    print(parts[1])
+    print(parts[2])
+#fractions
+from fractions import Fraction
+def fractionate(n):
+    li=[]
+    for i in range(n):
+        li.append(Fraction(1,n))
+    return li
+if __name__=="__main__":
+    print(fractionate(a))
+#lottery_numbers
+from random import sample
+def lottery_numbers(x,a,b):
+    ss=list(range(a+1,b))
+    lottery=sample(ss,x)
+    lottery.sort()
+    return lottery
+if __name__=="__main__":
+    lottery_numbers(p,q,r)
+#how_old
+from datetime import datetime, timedelta
+d=int(input("Day: "))
+m=int(input("Month: "))
+y=int(input("Year: "))
+dob=datetime(y, m, d)
+millenium=datetime(2000, 1, 1)
+age=millenium-dob
+if age.days<1:
+    print("You weren't born yet on the eve of the new millennium.")
+else:
+    print(f"You were {age.days-1} days old on the eve of the new millennium.")
+#string_helper
+import re
+def change_case(st):
+    return st.swapcase()
+def split_in_half(st):
+    n=len(st)
+    return st[:n//2], st[n//2:]
+def remove_special_characters(st):
+    return re.sub('[^a-zA-Z0-9\s]', '', st)
+if __name__=="__main__":
+    print(change_case("Well hello there!"),end=" ")
+#PART 7 ADDED
 
 
 
