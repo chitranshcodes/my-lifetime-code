@@ -1404,8 +1404,339 @@ print(f"Mean of numbers: {number.average()}")
 print(f"Sum of even numbers: {even.get_sum()}")
 print(f"Sum of odd numbers: {odd.get_sum()}")
 #PART 8 ADDED
+#PART 9 STARTS
+#Fastest_car
+class Car:
+    def __init__(self, make: str, top_speed: int):
+        self.make = make
+        self.top_speed = top_speed
+    def __str__(self):
+        return f"Car (make: {self.make}, top speed: {self.top_speed})"
+def fastest_car(li):
+    ts=0
+    for carx in li:
+        if carx.top_speed>=ts:
+            ts=carx.top_speed
+            carr=carx.make
+    return carr
+if __name__ == "__main__":
+    car1 = Car("Saab", 195)
+    car2 = Car("Lada", 110)
+    car3 = Car("Ferrari", 280)
+    car4 = Car("Trabant", 85)
+    cars = [car1, car2, car3, car4]
+    print(fastest_car(cars))
+#Passing_submissions
+class ExamSubmission:
+    def __init__(self, examinee: str, points: int):
+        self.examinee = examinee
+        self.points = points
 
-    
+    def __str__(self):
+        return f'ExamSubmission (examinee: {self.examinee}, points: {self.points})'
+def passed(li,i):
+    l=[]
+    for a in li:
+        if a.points>=i:
+            l.append(a)
+    return l
+if __name__ == "__main__":
+    s1 = ExamSubmission("Peter", 12)
+    s2 = ExamSubmission("Pippa", 19)
+    s3 = ExamSubmission("Paul", 15)
+    s4 = ExamSubmission("Phoebe", 9)
+    s5 = ExamSubmission("Persephone", 17)
+    passes = passed([s1, s2, s3, s4, s5], 15)
+    for passing in passes:
+        print(passing)
+#Baby_centre
+class Person:
+    def __init__(self, name: str, age: int, height: int, weight: int):
+        self.name = name
+        self.age = age
+        self.height = height
+        self.weight = weight
+class BabyCentre:
+    def __init__(self):
+        self.number_of_weigh_ins = 0
+    def weigh(self, person: Person):
+        self.number_of_weigh_ins+=1
+        return person.weight
+    def feed(self,person):
+        person.weight+=1
+        
+    def weigh_ins(self):
+        return self.number_of_weigh_ins
+#LunchCard and PaymentTerminal
+class LunchCard:
+    def __init__(self, balance: float):
+        self.balance = balance
+    def deposit_money(self, amount: float):
+        self.balance += amount
+    def subtract_from_balance(self, amount: float):
+        if amount<=(self.balance):
+             self.balance-=amount
+             return True
+        else:
+             return False
+class PaymentTerminal:
+    def __init__(self):
+        self.funds = 1000
+        self.lunches = 0
+        self.specials = 0
+    def eat_lunch(self, payment: float):
+        if payment>=2.50:
+            self.lunches+=1
+            self.funds+=2.50
+            return payment-2.50
+        else:
+            return payment
+        pass
+    def eat_special(self, payment: float):
+        if payment>=4.30:
+            self.specials+=1
+            self.funds+=4.30
+            return payment-4.30
+        else:
+            return payment
+        pass
+    def eat_lunch_lunchcard(self, card: LunchCard):
+        if card.balance>=2.50:
+            card.balance-=2.50
+            self.lunches+=1
+            return True
+        else:
+            return False
+        pass
+    def eat_special_lunchcard(self, card: LunchCard):
+        if card.balance>=4.30:
+            card.balance-=4.30
+            self.specials+=1
+            return True
+        else:
+            return False
+        pass
+    def deposit_money_on_card(self, card: LunchCard, amount: float):
+        card.balance+=amount
+if __name__=="__main__":
+    exactum = PaymentTerminal()
+
+    change = exactum.eat_lunch(10)
+    print("The change returned was", change)
+
+    change = exactum.eat_lunch(5)
+    print("The change returned was", change)
+
+    change = exactum.eat_special(4.3)
+    print("The change returned was", change)
+
+    print("Funds available at the terminal:", exactum.funds)
+    print("Regular lunches sold:", exactum.lunches)
+    print("Special lunches sold:", exactum.specials)
+#Comparing_Properties
+class RealProperty:
+    def __init__(self, rooms: int , square_metres: int , price_per_sqm:int):
+        self.rooms = rooms
+        self.square_metres = square_metres
+        self.price_per_sqm = price_per_sqm
+    def bigger(self,prop):
+        if self.square_metres> prop.square_metres:
+            return True
+        else:
+            return False
+    def price_difference(self,prop):
+        if (prop.square_metres*prop.price_per_sqm)>(self.square_metres*self.price_per_sqm):
+            return (prop.square_metres*prop.price_per_sqm)-(self.square_metres*self.price_per_sqm)
+        else:
+            return (self.square_metres*self.price_per_sqm)-(prop.square_metres*prop.price_per_sqm)
+    def more_expensive(self,prop):
+        if (prop.square_metres*prop.price_per_sqm)>(self.square_metres*self.price_per_sqm):
+            return False
+        else:
+            return True
+#Pets
+class Pet:
+    def __init__(self, name: str, description: str):
+        self.name = name
+        self.description = description
+    def __str__(self):
+        return f"{self.name} ({self.description})"
+class Person:
+    def __init__(self, name: str, pet: Pet):
+        self.name = name
+        self.pet = pet
+    def __str__(self):
+        return f"{self.name}, whose pal is {self.pet.name}, a {self.pet.description}"
+#WeatherStation
+class WeatherStation:
+    def __init__(self,name):
+        self.__name=name
+        self.__observations=[]
+    def add_observation(self,s):
+        self.__observations.append(s)
+    def latest_observation(self):
+        if not self.__observations:
+            return ""
+        return self.__observations[-1]
+    def number_of_observations(self):
+        return len(self.__observations)
+    def __str__(self):
+        return f"{self.__name}, {len(self.__observations)} observations"
+#ServiceCharge
+class BankAccount:
+    def __init__(self,name,acc,bal):
+        self.__name=name
+        self.__acc=acc
+        self.__bal=bal
+    def deposit(self,amount):
+        self.__bal+=amount
+        self.__service_charge()
+    def withdraw(self,amount):
+        if amount<self.__bal:
+            self.__bal-=amount
+        self.__service_charge()
+    def __service_charge(self):
+        pc=self.__bal/100
+        self.__bal-=pc
+    @property
+    def balance(self):
+        return self.__bal
+if __name__=="__main__":
+    account = BankAccount("Randy Riches", "12345-6789", 1000)
+    account.withdraw(100)
+    print(account.balance)
+    account.deposit(100)
+    print(account.balance)
+#Postcodes
+class City:
+    postcodes={"Helsinki":"00100", "Turku": "20100", "Tampere": "33100","Rovaniemi":"96100","Oulu":"90100"}
+    def __init__(self, name: str, population: int):
+        self.__name = name
+        self.__population = population
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def population(self):
+        return self.__population
+
+    def __str__(self):
+        return f"{self.__name} ({self.__population} residents.)"
+#List_Helper
+class ListHelper:
+    @classmethod
+    def greatest_frequency(cls,num):
+        dic={}
+        for n in num:
+            if n in dic:
+                dic[n]+=1
+            else:
+                dic[n]=1
+        x=0
+        j=0
+        for n in dic:
+            if dic[n]>x:
+                x=dic[n]
+                j=n
+        return j    
+    @classmethod
+    def doubles(cls,num):
+        dic={}
+        for n in num:
+            if n in dic:
+                dic[n]+=1
+            else:
+                dic[n]=1
+        x=0
+        for n in dic:
+            if dic[n]>=2:
+                x+=1
+        return x        
+if __name__=="__main__":
+    numbers = [1, 1, 2, 1, 3, 3, 4, 5, 5, 5, 6, 5, 5, 5]
+    print(ListHelper.greatest_frequency(numbers))
+    print(ListHelper.doubles(numbers))
+#Item Suitcase Cargo
+class Item:
+    def __init__(self,name,weight):
+        self.__name=name
+        self.__weight=weight
+    def __str__(self):
+        return f"{self.__name} ({self.__weight} kg)"
+    def name(self):
+        return self.__name
+    def weight(self):
+        return self.__weight
+class Suitcase:
+    def __init__(self,mw):
+        self.mw=mw
+        self.cw=0
+        self.num_i=0
+        self.items=[]
+    def add_item(self,item):
+        if self.cw+item.weight()<=self.mw:
+            self.cw+=item.weight()
+            self.num_i+=1
+            self.items.append(item)
+    def __str__(self):
+        if self.num_i==1:
+            return f"1 item ({self.cw} kg)"
+        else:
+            return f"{self.num_i} items ({self.cw} kg)"
+    def print_items(self):
+        for i in range(len(self.items)):
+            print(f"{self.items[i]}")
+    def weight(self):
+        return self.cw
+    def heaviest_item(self):
+        x=0
+        a=Item
+        if len(self.items)>0:
+            for j in range(len(self.items)):
+                if x<self.items[j].weight():
+                    x=self.items[j].weight()
+                    a=self.items[j]
+        return a
+class CargoHold:
+    def __init__(self,mw):
+        self.mw=mw
+        self.suitcases=[]
+        self.num_s=0
+        self.cw=0
+    def add_suitcase(self,suitcase):
+        if self.cw+suitcase.weight()<self.mw:
+            self.suitcases.append(suitcase)
+            self.num_s+=1
+            self.cw+=suitcase.weight()
+    def __str__(self):
+        if self.num_s==1:
+            return f"1 suitcase, space for {self.mw-self.cw} kg"
+        return f"{self.num_s} suitcases, space for {self.mw-self.cw} kg"
+    def print_items(self):
+        for suitcase in self.suitcases:
+            suitcase.print_items()
+if __name__=="__main__":
+
+    book = Item("ABC Book", 2)
+    phone = Item("Nokia 3210", 1)
+    brick = Item("Brick", 4)
+
+    adas_suitcase = Suitcase(10)
+    adas_suitcase.add_item(book)
+    adas_suitcase.add_item(phone)
+
+    peters_suitcase = Suitcase(10)
+    peters_suitcase.add_item(brick)
+
+    cargo_hold = CargoHold(1000)
+    cargo_hold.add_suitcase(adas_suitcase)
+    cargo_hold.add_suitcase(peters_suitcase)
+
+    print("The suitcases in the cargo hold contain the following items:")
+    cargo_hold.print_items()
+#PART 9 ADDED
 
 
 
