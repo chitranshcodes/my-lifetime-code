@@ -974,11 +974,148 @@ def older_people(li,ye):
 if __name__=="__main__":
     older_people(list,year)
 # PART 5 ADDED
+#PART 6 STARTS
+#inscription
+name = input("Whom should I sign this to: ")
+filename = input("Where shall I save it: ")
 
+    # Inscription content
+inscription = f"Hi {name}, we hope you enjoy learning Python with us! Best, Mooc.fi Team"
+try:
+    with open(filename, "w") as file:
+        file.write(inscription)
+    print(f"The inscription has been saved to {filename}.")
+except Exception as e:
+    print(f"An error occurred while saving the file: {e}")
+#diary
+def add_entry(filename):
+    """Add a diary entry to the file."""
+    entry = input("Diary entry: ")
+    with open(filename, "a") as file:
+        file.write(entry + "\n")
+    print("Diary saved")
 
+def read_entries(filename):
+    """Read and display all diary entries."""
+    print("Entries:")
+    try:
+        with open(filename, "r") as file:
+            entries = file.readlines()
+            for entry in entries:
+                print(entry.strip())
+    except FileNotFoundError:
+        print("No entries yet.")
 
+"""Main diary program loop."""
+filename = "diary.txt"
+while True:
+    print("1 - add an entry, 2 - read entries, 0 - quit")
+    function = input("Function: ")
+    if function == "1":
+        add_entry(filename)
+    elif function == "2":
+        read_entries(filename)
+    elif function == "0":
+        print("Bye now!")
+        break
+    else:
+        print("Invalid option, please try again.")
+#word_search
+def find_words(search_term: str):
+    """Find words matching the search term with wildcard functionality."""
+    matching_words = []
+    
+    with open("words.txt", "r") as file:
+        words = [line.strip() for line in file]
+    
+    if '*' in search_term:
+        # Handle asterisk wildcard
+        if search_term.startswith('*'):
+            suffix = search_term[1:]
+            matching_words = [word for word in words if word.endswith(suffix)]
+        elif search_term.endswith('*'):
+            prefix = search_term[:-1]
+            matching_words = [word for word in words if word.startswith(prefix)]
+    elif '.' in search_term:
+        # Handle dot wildcard
+        from re import fullmatch
+        regex_pattern = search_term.replace('.', '.')
+        matching_words = [word for word in words if fullmatch(regex_pattern, word)]
+    else:
+        # Exact match
+        matching_words = [word for word in words if word == search_term]
+    
+    return matching_words
+if __name__ == "__main__":
+    print(find_words("*vokes"))  # Example search term with wildcard
+    print(find_words("ca."))    # Example search term with dot wildcard
+    print(find_words("python")) # Example exact match
+#read_input
+def read_input(st,a,b):
+    while True:
+        try:
+            num=input(st)
+            num=int(num)
+            if a<num and num<b:
+                return num
+            else:
+                print(f"You must type in an integer between {a} and {b}")
+        except ValueError:
+            print(f"You must type in an integer between {a} and {b}")
+if __name__=="__main__":
+    read_input(s,x,y)
+#parameter validation
+def new_person(name: str, age: int):
+    # Validate the name
+    if not name.strip():
+        raise ValueError("Name cannot be an empty string.")
+    if len(name.split()) < 2:
+        raise ValueError("Name must contain at least two words.")
+    if len(name) > 40:
+        raise ValueError("Name cannot exceed 40 characters.")
 
-
+    # Validate the age
+    if age < 0:
+        raise ValueError("Age cannot be negative.")
+    if age > 150:
+        raise ValueError("Age cannot exceed 150.")
+    return (name, age)
+if __name__ == "__main__":
+    person = new_person(s,i)  
+#incorrect_lottery_numbers
+def is_valid_line(line):
+    week_pattern = r'^week \d+;'
+    number_pattern = r'(\d+,){6}\d+$'
+    if not re.match(week_pattern, line.split(";")[0] + ";"):
+        return False
+    try:
+        week, numbers = line.strip().split(";")
+        week_number = int(week.split()[1])
+        if week_number <= 0:  # Week number must be positive
+            return False
+        numbers = [int(num) for num in numbers.split(",")]
+    except (ValueError, IndexError):
+        return False
+    if len(numbers) != 7:
+        return False
+    if not all(1 <= num <= 39 for num in numbers) or len(numbers) != len(set(numbers)):
+        return False
+    return True
+def filter_incorrect():
+    input_file = "lottery_numbers.csv"
+    output_file = "correct_numbers.csv"
+    try:
+        with open(input_file, "r") as infile, open(output_file, "w") as outfile:
+            for line in infile:
+                if is_valid_line(line):
+                    outfile.write(line)
+    except FileNotFoundError:
+        print(f"Error: The file {input_file} does not exist.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+if __name__ == "__main__":
+    filter_incorrect()
+#PART 6 ADDED
 
 
 
