@@ -1658,7 +1658,7 @@ if __name__=="__main__":
     numbers = [1, 1, 2, 1, 3, 3, 4, 5, 5, 5, 6, 5, 5, 5]
     print(ListHelper.greatest_frequency(numbers))
     print(ListHelper.doubles(numbers))
-#Item Suitcase Cargo
+#Item Suitcase and Cargo HOLD
 class Item:
     def __init__(self,name,weight):
         self.__name=name
